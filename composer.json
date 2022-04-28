@@ -1,0 +1,28 @@
+{
+  "name": "be/app-contact",
+  "type": "library",
+  "description": "联系我们",
+  "keywords": [
+    "PHP",
+    "contact",
+    "联系我们"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "liu12",
+      "email": "i@liu12.com",
+      "homepage": "http://www.liu12.com/"
+    }
+  ],
+  "require": {
+    "be/be": "2.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Be\\App\\Contact\\": "src/"
+    }
+  }
+}
+
+
