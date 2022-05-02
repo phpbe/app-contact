@@ -2,9 +2,10 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type="text/css">
-        html{height:100%}
+        html{height:100%;font-size: 14px;}
         body{height:100%;margin:0;padding:0}
         #google-map{height:100%}
     </style>
@@ -12,23 +13,22 @@
     <script type="text/javascript">
         google.maps.event.addDomListener(window, 'load', function(){
 
-            var oLatlng = new google.maps.LatLng(<?php echo $this->configContact->lat; ?>,<?php echo $this->configContact->lng; ?>);
+            let oLatlng = new google.maps.LatLng(<?php echo $this->configContact->lat; ?>,<?php echo $this->configContact->lng; ?>);
 
-            var oOptions = {
+            let oOptions = {
                 center: oLatlng,
                 zoom: 18,
                 mapTypeId: google.maps.MapTypeId.ROADMAP
             };
 
-            var oMap = new google.maps.Map(document.getElementById("google-map"), oOptions);
+            let oMap = new google.maps.Map(document.getElementById("google-map"), oOptions);
 
-
-            var oMarker = new google.maps.Marker({
+            let oMarker = new google.maps.Marker({
                 position: oLatlng,
                 map: oMap
             });
 
-            var oInfoWindow = new google.maps.InfoWindow({
+            let oInfoWindow = new google.maps.InfoWindow({
                 content: '<div style="font-weight:bold;"><?php echo $this->configContact->markerTitle; ?></div><div style="padding:10px 0px;"><?php echo $this->configContact->markerAddress; ?></div>',
                 maxWidth:500
             });

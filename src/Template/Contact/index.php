@@ -117,7 +117,7 @@
                                 dataType: "json",
                                 success: function(json){
                                     $submit.prop("disabled", false).val(sValue);
-                                    alert( json.message );
+                                    alert(json.message );
                                     if(json.success) {
                                         $("#contact-content").val("");
                                     }
