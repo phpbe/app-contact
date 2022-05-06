@@ -24,7 +24,7 @@ class Message
         try {
             $configMessage = Be::getConfig('App.Contact.Message');
 
-            $tupleMessage = Be::newTuple('contact_message');
+            $tupleMessage = Be::getTuple('contact_message');
 
             $name = $request->post('name', '');
             if (!is_string($name)) {
