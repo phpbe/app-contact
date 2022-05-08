@@ -2,7 +2,7 @@
     <div class="be-container be-my-400">
         <h1 class="be-h1 be-ta-center be-lh-300"><?php echo $this->title; ?></h1>
 
-        <div class="be-row">
+        <div class="be-row be-mt-200">
             <div class="be-col-24 be-col-md-13">
                 <iframe src="<?php echo beUrl('Contact.Contact.'.$this->configContact->mapType.'Map'); ?>" style="width:100%;height:400px;" scrolling="no" frameborder="0"></iframe>
                 <a href="<?php echo beUrl('Contact.Contact.'.$this->configContact->mapType.'Map'); ?>" target="_blank">全屏查看地图</a>

@@ -178,7 +178,7 @@
                                 <div class="be-mt-150">描述：</div>
                                 <?php
                                 $driver = new \Be\AdminPlugin\Form\Item\FormItemTinymce([
-                                    'name' => 'description',
+                                    'name' => 'info',
                                     'ui' => [
                                         'form-item' => [
                                             'class' => 'be-mt-50'
@@ -187,7 +187,7 @@
                                 ]);
                                 echo $driver->getHtml();
 
-                                $formData['description'] = $this->configContact->info;
+                                $formData['info'] = $this->configContact->info;
 
                                 $jsX = $driver->getJs();
                                 if ($jsX) {

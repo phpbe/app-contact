@@ -16,7 +16,7 @@
     }
   ],
   "require": {
-    "be/be": "2.*"
+    "be/be": "^2.2"
   },
   "autoload": {
     "psr-4": {
