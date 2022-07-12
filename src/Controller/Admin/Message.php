@@ -196,6 +196,14 @@ class Message
                             'label' => '内容',
                         ],
                         [
+                            'name' => 'page_url',
+                            'label' => '页面网址',
+                        ],
+                        [
+                            'name' => 'page_title',
+                            'label' => '页面标题',
+                        ],
+                        [
                             'name' => 'ip',
                             'label' => 'IP',
                             'value' => function ($row) {

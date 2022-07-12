@@ -26,6 +26,18 @@ class Message
 
             $tupleMessage = Be::getTuple('contact_message');
 
+            $pageUrl = $request->post('page_url', '');
+            if (mb_strlen($pageUrl) > 300) {
+                $pageUrl = mb_substr($pageUrl, 0, 300);
+            }
+            $tupleMessage->page_url = $pageUrl;
+
+            $pageTitle = $request->post('page_title', '');
+            if (mb_strlen($pageTitle) > 300) {
+                $pageUrl = mb_substr($pageTitle, 0, 300);
+            }
+            $tupleMessage->page_title = $pageTitle;
+
             $name = $request->post('name', '');
             if (!is_string($name)) {
                 $name = '';

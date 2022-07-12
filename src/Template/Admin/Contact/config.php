@@ -1,7 +1,7 @@
 
 
 
-<be-center>
+<be-page-content>
     <?php
     $js = [];
     $css = [];
@@ -367,4 +367,4 @@
 
     </script>
 
-</be-center>
+</be-page-content>

@@ -1,11 +1,11 @@
-/index.php
+/www/index.php
 /server.php
-.htaccess
+www/.htaccess
 composer.lock
 .DS_store
 Thumbs.db
 
 /data
-/upload
+/www
 /vendor
 /.idea

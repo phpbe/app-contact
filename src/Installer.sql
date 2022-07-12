@@ -4,6 +4,8 @@ CREATE TABLE `contact_message` (
 `email` varchar(60) NOT NULL DEFAULT '' COMMENT '邮箱',
 `mobile` varchar(20) NOT NULL DEFAULT '' COMMENT '手机号',
 `content` varchar(500) NOT NULL COMMENT '内容',
+`page_url` varchar(300) NOT NULL DEFAULT '' COMMENT '页面网址',
+`page_title` varchar(300) NOT NULL DEFAULT '' COMMENT '页面标题',
 `ip` varchar(15) NOT NULL DEFAULT '' COMMENT 'IP',
 `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT='用户留言';
