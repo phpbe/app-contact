@@ -22,8 +22,6 @@ class Message
         $request = Be::getRequest();
         $response = Be::getResponse();
         try {
-            $configMessage = Be::getConfig('App.Contact.Message');
-
             $tupleMessage = Be::getTuple('contact_message');
 
             $pageUrl = $request->post('page_url', '');
@@ -43,9 +41,6 @@ class Message
                 $name = '';
             }
             $name = trim($name);
-            if ($configMessage->nameRequired && $name === '') {
-                throw new ControllerException('请输入您的名字！');
-            }
             if (mb_strlen($name) > 60) {
                 throw new ControllerException('名字最大长度60位！');
             }
@@ -56,9 +51,6 @@ class Message
                 $email = '';
             }
             $email = trim($email);
-            if ($configMessage->emailRequired && $email === '') {
-                throw new ControllerException('请输入您的邮箱！');
-            }
             if ($email && !Validator::isEmail($email)) {
                 throw new ControllerException('邮箱格式不对！');
             }
@@ -72,9 +64,6 @@ class Message
                 $mobile = '';
             }
             $mobile = trim($mobile);
-            if ($configMessage->mobileRequired && $mobile === '') {
-                throw new ControllerException('请输入您的手机号！');
-            }
             if (mb_strlen($mobile) > 20) {
                 throw new ControllerException('手机号最大长度20位！');
             }

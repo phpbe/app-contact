@@ -28,9 +28,6 @@ class Contact
         $response->set('meta_description', $configContact->metaDescription);
         $response->set('meta_keywords', $configContact->metaKeywords);
 
-        $configMessage = Be::getConfig('App.Contact.Message');
-        $response->set('configMessage', $configMessage);
-
         $response->display();
     }
 
