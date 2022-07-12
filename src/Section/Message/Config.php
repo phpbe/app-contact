@@ -2,7 +2,7 @@
 namespace Be\App\Contact\Section\Message;
 
 /**
- * @BeConfig("留言表单", ordering="1", icon="el-icon-chat-line-square")
+ * @BeConfig("留言表单", ordering="1", icon="el-icon-message")
  */
 class Config
 {
