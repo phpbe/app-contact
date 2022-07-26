@@ -32,7 +32,7 @@ class Message
 
             $pageTitle = $request->post('page_title', '');
             if (mb_strlen($pageTitle) > 300) {
-                $pageUrl = mb_substr($pageTitle, 0, 300);
+                $pageTitle = mb_substr($pageTitle, 0, 300);
             }
             $tupleMessage->page_title = $pageTitle;
 
