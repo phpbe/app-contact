@@ -14,6 +14,7 @@ class Template extends Section
         echo '<style type="text/css">';
         echo $this->getCssBackgroundColor('message');
         echo $this->getCssPadding('message');
+        echo $this->getCssMargin('message');
         echo '</style>';
     }
 
