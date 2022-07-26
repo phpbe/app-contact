@@ -5,10 +5,11 @@ namespace Be\App\Contact\Config\Page\Contact;
 class index
 {
 
-    public int $middle = 1;
+    public int $west = 0;
+    public int $center = 1;
+    public int $east = 0;
 
-
-    public array $middleSections = [
+    public array $centerSections = [
         [
             'name' => 'be-page-title',
         ],

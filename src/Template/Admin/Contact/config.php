@@ -14,225 +14,221 @@
     ?>
 
     <div id="app" v-cloak>
-        <div class="be-center">
-            <div class="be-center-title"><?php echo $this->title; ?></div>
+        <el-form ref="formRef" :model="formData" class="be-mb-200">
+            <div class="be-row">
+                <div class="be-col-14">
+                    <div class="be-p-150 be-bc-fff">
 
-            <div class="be-center-box">
-                <el-form ref="formRef" :model="formData" class="be-mb-200">
-                    <div class="be-row">
-                        <div class="be-col-14">
-                            <div class="be-pr-200 be-br">
+                        <div><span class="be-c-red">*</span> 页面标题：</div>
+                        <el-form-item class="be-mt-50" prop="title" :rules="[{required: true, message: '请输入页面标题', trigger: 'change' }]">
+                            <el-input
+                                    type="text"
+                                    placeholder="请输入页面标题"
+                                    v-model = "formData.title"
+                                    size="medium"
+                                    maxlength="120"
+                                    show-word-limit>
+                            </el-input>
+                        </el-form-item>
+                        <?php $formData['title'] = $this->configContact->title; ?>
 
-                                <div><span class="be-c-red">*</span> 页面标题：</div>
-                                <el-form-item class="be-mt-50" prop="title" :rules="[{required: true, message: '请输入页面标题', trigger: 'change' }]">
-                                    <el-input
-                                            type="text"
-                                            placeholder="请输入页面标题"
-                                            v-model = "formData.title"
-                                            size="medium"
-                                            maxlength="120"
-                                            show-word-limit>
-                                    </el-input>
+                        <div class="be-row">
+                            <div class="be-col-auto be-lh-400">
+                                <span class="be-c-red">*</span> 地图类型：
+                            </div>
+                            <div class="be-col be-pl-100">
+                                <el-form-item class="be-mt-50" prop="mapType">
+                                    <el-radio-group  size="medium" v-model="formData.mapType">
+                                        <el-radio-button label="baidu">百度地图</el-radio-button>
+                                        <el-radio-button label="google">谷歌地图</el-radio-button>
+                                    </el-radio-group>
                                 </el-form-item>
-                                <?php $formData['title'] = $this->configContact->title; ?>
-
-                                <div class="be-row">
-                                    <div class="be-col-auto be-lh-400">
-                                        <span class="be-c-red">*</span> 地图类型：
-                                    </div>
-                                    <div class="be-col be-pl-100">
-                                        <el-form-item class="be-mt-50" prop="mapType">
-                                            <el-radio-group  size="medium" v-model="formData.mapType">
-                                                <el-radio-button label="baidu">百度地图</el-radio-button>
-                                                <el-radio-button label="google">谷歌地图</el-radio-button>
-                                            </el-radio-group>
-                                        </el-form-item>
-                                    </div>
-                                </div>
-                                <?php $formData['mapType'] = $this->configContact->mapType; ?>
-
-                                <template v-if="formData.mapType === 'baidu'">
-                                    <div class="be-mt-100"><span class="be-c-red">*</span> 百度地图Key：</div>
-                                    <el-form-item class="be-mt-50" prop="mapKeyBaidu">
-                                        <el-input
-                                                type="text"
-                                                placeholder="请输入百度地图Key"
-                                                v-model="formData.mapKeyBaidu"
-                                                maxlength="100"
-                                                size="medium"
-                                                show-word-limit>
-                                        </el-input>
-                                    </el-form-item>
-                                    <?php $formData['mapKeyBaidu'] = $this->configContact->mapKeyBaidu; ?>
-
-                                    <div class="be-mt-100"><span class="be-c-red">*</span> 在地图中标记位置：</div>
-                                    <div class="be-mt-50">
-                                        <iframe src="<?php echo beAdminUrl('Contact.Contact.baiduMap'); ?>" style="width:100%; height:400px;" scrolling="no" frameborder="0"></iframe>
-                                    </div>
-                                </template>
-
-                                <template v-if="formData.mapType === 'google'">
-                                    <div class="be-mt-100"><span class="be-c-red">*</span> Google地图Key：</div>
-                                    <el-form-item class="be-mt-50" prop="mapKeyGoogle">
-                                        <el-input
-                                                type="text"
-                                                placeholder="请输入Google地图Key"
-                                                v-model="formData.mapKeyGoogle"
-                                                maxlength="100"
-                                                size="medium"
-                                                show-word-limit>
-                                        </el-input>
-                                    </el-form-item>
-                                    <?php $formData['mapKeyGoogle'] = $this->configContact->mapKeyGoogle; ?>
-
-                                    <div class="be-mt-100"><span class="be-c-red">*</span> 在地图中标记位置：</div>
-                                    <div class="be-mt-50">
-                                        <iframe src="<?php echo beAdminUrl('Contact.Contact.googleMap'); ?>" style="width:100%; height:400px;" scrolling="no" frameborder="0"></iframe>
-                                    </div>
-
-                                </template>
-
-                                <div class="be-row be-lh-300">
-                                    <div class="be-col-auto">
-                                        选中的经纬度：
-                                    </div>
-                                    <div class="be-col be-pl-100">
-                                        经度：{{formData.lng}}
-                                    </div>
-                                    <div class="be-col be-pl-100">
-                                        纬度：{{formData.lat}}
-                                    </div>
-                                </div>
-                                <?php $formData['lng'] = $this->configContact->lng; ?>
-                                <?php $formData['lat'] = $this->configContact->lat; ?>
-
-                                <div class="be-mt-100"><span class="be-c-red">*</span> 定位点标题：</div>
-                                <el-form-item class="be-mt-50" prop="address">
-                                    <el-input
-                                            type="text"
-                                            placeholder="请输入定位点标题"
-                                            v-model="formData.markerTitle"
-                                            maxlength="300"
-                                            size="medium"
-                                            show-word-limit>
-                                    </el-input>
-                                </el-form-item>
-                                <?php $formData['markerTitle'] = $this->configContact->markerTitle; ?>
-
-                                <div class="be-mt-100"><span class="be-c-red">*</span> 定位点地址：</div>
-                                <el-form-item class="be-mt-50" prop="address">
-                                    <el-input
-                                            type="text"
-                                            placeholder="请输入定位点地址"
-                                            v-model="formData.markerAddress"
-                                            maxlength="300"
-                                            size="medium"
-                                            show-word-limit>
-                                    </el-input>
-                                </el-form-item>
-                                <?php $formData['markerAddress'] = $this->configContact->markerAddress; ?>
                             </div>
                         </div>
-                        <div class="be-col-10">
+                        <?php $formData['mapType'] = $this->configContact->mapType; ?>
 
-                            <div class="be-pl-200">
-
-                                <div>
-                                    SEO描述
-                                    <el-tooltip effect="dark" content="这是该文章分类的整体SEO描述，可以添加一些文章分类描述，使文章分类在搜索引擎中获得更高的排名。" placement="top">
-                                        <i class="el-icon-fa fa-question-circle-o"></i>
-                                    </el-tooltip>
-                                </div>
+                        <template v-if="formData.mapType === 'baidu'">
+                            <div class="be-mt-100"><span class="be-c-red">*</span> 百度地图Key：</div>
+                            <el-form-item class="be-mt-50" prop="mapKeyBaidu">
                                 <el-input
-                                        class="be-mt-50"
-                                        type="textarea"
-                                        :rows="6"
-                                        placeholder="请输入SEO描述"
-                                        v-model = "formData.metaDescription"
+                                        type="text"
+                                        placeholder="请输入百度地图Key"
+                                        v-model="formData.mapKeyBaidu"
+                                        maxlength="100"
                                         size="medium"
-                                        maxlength="500"
                                         show-word-limit>
                                 </el-input>
-                                <?php
-                                $formData['metaDescription'] = $this->configContact->metaDescription;
-                                ?>
+                            </el-form-item>
+                            <?php $formData['mapKeyBaidu'] = $this->configContact->mapKeyBaidu; ?>
 
-                                <div class="be-mt-150">
-                                    SEO关键词
-                                    <el-tooltip effect="dark" content="关键词可以提高搜索结果排名，建议1-2个关键词即可，堆砌关键词可能会降低排名！" placement="top">
-                                        <i class="el-icon-fa fa-question-circle-o"></i>
-                                    </el-tooltip>
-                                </div>
+                            <div class="be-mt-100"><span class="be-c-red">*</span> 在地图中标记位置：</div>
+                            <div class="be-mt-50">
+                                <iframe src="<?php echo beAdminUrl('Contact.Contact.baiduMap'); ?>" style="width:100%; height:400px;" scrolling="no" frameborder="0"></iframe>
+                            </div>
+                        </template>
+
+                        <template v-if="formData.mapType === 'google'">
+                            <div class="be-mt-100"><span class="be-c-red">*</span> Google地图Key：</div>
+                            <el-form-item class="be-mt-50" prop="mapKeyGoogle">
                                 <el-input
-                                        class="be-mt-50"
                                         type="text"
-                                        placeholder="请输入SEO关键词，多个关键词以逗号分隔。"
-                                        v-model = "formData.metaKeywords"
+                                        placeholder="请输入Google地图Key"
+                                        v-model="formData.mapKeyGoogle"
+                                        maxlength="100"
                                         size="medium"
-                                        maxlength="60">
+                                        show-word-limit>
                                 </el-input>
-                                <?php
-                                $formData['metaKeywords'] = $this->configContact->metaKeywords;
-                                ?>
+                            </el-form-item>
+                            <?php $formData['mapKeyGoogle'] = $this->configContact->mapKeyGoogle; ?>
 
-                                <div class="be-mt-150">描述：</div>
-                                <?php
-                                $driver = new \Be\AdminPlugin\Form\Item\FormItemTinymce([
-                                    'name' => 'info',
-                                    'ui' => [
-                                        'form-item' => [
-                                            'class' => 'be-mt-50'
-                                        ],
-                                    ],
-                                ]);
-                                echo $driver->getHtml();
-
-                                $formData['info'] = $this->configContact->info;
-
-                                $jsX = $driver->getJs();
-                                if ($jsX) {
-                                    $js = array_merge($js, $jsX);
-                                }
-
-                                $cssX = $driver->getCss();
-                                if ($cssX) {
-                                    $css = array_merge($css, $cssX);
-                                }
-
-                                $vueDataX = $driver->getVueData();
-                                if ($vueDataX) {
-                                    $vueData = \Be\Util\Arr::merge($vueData, $vueDataX);
-                                }
-
-                                $vueMethodsX = $driver->getVueMethods();
-                                if ($vueMethodsX) {
-                                    $vueMethods = array_merge($vueMethods, $vueMethodsX);
-                                }
-
-                                $vueHooksX = $driver->getVueHooks();
-                                if ($vueHooksX) {
-                                    foreach ($vueHooksX as $k => $v) {
-                                        if (isset($vueHooks[$k])) {
-                                            $vueHooks[$k] .= "\r\n" . $v;
-                                        } else {
-                                            $vueHooks[$k] = $v;
-                                        }
-                                    }
-                                }
-                                ?>
+                            <div class="be-mt-100"><span class="be-c-red">*</span> 在地图中标记位置：</div>
+                            <div class="be-mt-50">
+                                <iframe src="<?php echo beAdminUrl('Contact.Contact.googleMap'); ?>" style="width:100%; height:400px;" scrolling="no" frameborder="0"></iframe>
                             </div>
 
-                            <div class="be-mt-200 be-ta-right">
-                                <el-button size="medium" type="primary" :disabled="loading" @click="save">保存</el-button>
-                            </div>
+                        </template>
 
+                        <div class="be-row be-lh-300">
+                            <div class="be-col-auto">
+                                选中的经纬度：
+                            </div>
+                            <div class="be-col be-pl-100">
+                                经度：{{formData.lng}}
+                            </div>
+                            <div class="be-col be-pl-100">
+                                纬度：{{formData.lat}}
+                            </div>
                         </div>
+                        <?php $formData['lng'] = $this->configContact->lng; ?>
+                        <?php $formData['lat'] = $this->configContact->lat; ?>
+
+                        <div class="be-mt-100"><span class="be-c-red">*</span> 定位点标题：</div>
+                        <el-form-item class="be-mt-50" prop="address">
+                            <el-input
+                                    type="text"
+                                    placeholder="请输入定位点标题"
+                                    v-model="formData.markerTitle"
+                                    maxlength="300"
+                                    size="medium"
+                                    show-word-limit>
+                            </el-input>
+                        </el-form-item>
+                        <?php $formData['markerTitle'] = $this->configContact->markerTitle; ?>
+
+                        <div class="be-mt-100"><span class="be-c-red">*</span> 定位点地址：</div>
+                        <el-form-item class="be-mt-50" prop="address">
+                            <el-input
+                                    type="text"
+                                    placeholder="请输入定位点地址"
+                                    v-model="formData.markerAddress"
+                                    maxlength="300"
+                                    size="medium"
+                                    show-word-limit>
+                            </el-input>
+                        </el-form-item>
+                        <?php $formData['markerAddress'] = $this->configContact->markerAddress; ?>
                     </div>
                 </div>
+                <div class="be-col-10">
 
-            </el-form>
+                    <div class="be-pl-200">
 
-        </div>
+                        <div class="be-p-150 be-bc-fff">
+
+                            <div>
+                                SEO描述
+                                <el-tooltip effect="dark" content="这是该文章分类的整体SEO描述，可以添加一些文章分类描述，使文章分类在搜索引擎中获得更高的排名。" placement="top">
+                                    <i class="el-icon-fa fa-question-circle-o"></i>
+                                </el-tooltip>
+                            </div>
+                            <el-input
+                                    class="be-mt-50"
+                                    type="textarea"
+                                    :rows="6"
+                                    placeholder="请输入SEO描述"
+                                    v-model = "formData.metaDescription"
+                                    size="medium"
+                                    maxlength="500"
+                                    show-word-limit>
+                            </el-input>
+                            <?php
+                            $formData['metaDescription'] = $this->configContact->metaDescription;
+                            ?>
+
+                            <div class="be-mt-150">
+                                SEO关键词
+                                <el-tooltip effect="dark" content="关键词可以提高搜索结果排名，建议1-2个关键词即可，堆砌关键词可能会降低排名！" placement="top">
+                                    <i class="el-icon-fa fa-question-circle-o"></i>
+                                </el-tooltip>
+                            </div>
+                            <el-input
+                                    class="be-mt-50"
+                                    type="text"
+                                    placeholder="请输入SEO关键词，多个关键词以逗号分隔。"
+                                    v-model = "formData.metaKeywords"
+                                    size="medium"
+                                    maxlength="60">
+                            </el-input>
+                            <?php
+                            $formData['metaKeywords'] = $this->configContact->metaKeywords;
+                            ?>
+
+                            <div class="be-mt-150">描述：</div>
+                            <?php
+                            $driver = new \Be\AdminPlugin\Form\Item\FormItemTinymce([
+                                'name' => 'info',
+                                'ui' => [
+                                    'form-item' => [
+                                        'class' => 'be-mt-50'
+                                    ],
+                                ],
+                            ]);
+                            echo $driver->getHtml();
+
+                            $formData['info'] = $this->configContact->info;
+
+                            $jsX = $driver->getJs();
+                            if ($jsX) {
+                                $js = array_merge($js, $jsX);
+                            }
+
+                            $cssX = $driver->getCss();
+                            if ($cssX) {
+                                $css = array_merge($css, $cssX);
+                            }
+
+                            $vueDataX = $driver->getVueData();
+                            if ($vueDataX) {
+                                $vueData = \Be\Util\Arr::merge($vueData, $vueDataX);
+                            }
+
+                            $vueMethodsX = $driver->getVueMethods();
+                            if ($vueMethodsX) {
+                                $vueMethods = array_merge($vueMethods, $vueMethodsX);
+                            }
+
+                            $vueHooksX = $driver->getVueHooks();
+                            if ($vueHooksX) {
+                                foreach ($vueHooksX as $k => $v) {
+                                    if (isset($vueHooks[$k])) {
+                                        $vueHooks[$k] .= "\r\n" . $v;
+                                    } else {
+                                        $vueHooks[$k] = $v;
+                                    }
+                                }
+                            }
+                            ?>
+                        </div>
+
+                        <div class="be-mt-200 be-ta-right">
+                            <el-button size="medium" type="primary" :disabled="loading" @click="save">保存</el-button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </el-form>
 
     </div>
     <?php
